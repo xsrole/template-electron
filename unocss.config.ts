@@ -10,12 +10,20 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [],
+  shortcuts: [
+    {
+      'flex-center': 'flex items-center justify-center'
+    }
+  ],
   presets: [
     presetUno(),
     presetAttributify(),
     presetIcons({
-      scale: 1.2
+      scale: 1.2,
+      extraProperties: {
+        display: 'inline-block',
+        'vertical-align': 'middle'
+      }
     }),
     presetTypography(),
     presetWebFonts({

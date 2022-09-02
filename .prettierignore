@@ -1,6 +1,8 @@
-out
-dist
+.prettierignore
+.gitignore
+.eslintignore
 pnpm-lock.yaml
-LICENSE.md
-tsconfig.json
-tsconfig.*.json
+docs/
+dist/
+.vscode
+node_modules
