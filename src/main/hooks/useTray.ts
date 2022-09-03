@@ -1,25 +1,29 @@
 import { App, Tray, Menu, BrowserWindow, ipcMain, MenuItem } from 'electron'
 import { join } from 'path'
-const useTray = (window: BrowserWindow, app: App) => {
+const useTray = (mainWindow: BrowserWindow, app: App) => {
     const trayMenu = [
+        {
+            label: '显示',
+            click: () => {
+                mainWindow.show()
+            }
+        },
         {
             label: '退出',
             click: () => {
                 app.quit()
             }
-        }
+        },
     ]
     const iconPath = join(__dirname, '../../build/icon.png')
     const setTray = () => {
-        console.log('setTray');
-
         const appTray = new Tray(iconPath)
         const contextMenu = Menu.buildFromTemplate(trayMenu)
-        window.hide()
+        mainWindow.hide()
         appTray.setToolTip('tooltip')
         appTray.setContextMenu(contextMenu)
         appTray.on('click', () => {
-            window.show()
+            mainWindow.show()
             appTray.destroy()
         })
     }
