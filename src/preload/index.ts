@@ -1,10 +1,20 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import * as path from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { useTray, useWindow, useApp } from './hooks'
-
-const init = async () => {
-  const { app, mainWindow } = await useApp(useWindow)
-  useTray(mainWindow, app)
+import { contextBridge } from 'electron'
+import { electronAPI } from '@electron-toolkit/preload'
+// Custom APIs for renderer
+const api = {}
+// Use `contextBridge` APIs to expose Electron APIs to
+// renderer only if context isolation is enabled, otherwise
+// just add to the DOM global.
+if (process.contextIsolated) {
+  try {
+    contextBridge.exposeInMainWorld('electron', electronAPI)
+    contextBridge.exposeInMainWorld('api', api)
+  } catch (error) {
+    console.error(error)
+  }
+} else {
+  // @ts-ignore (define in dts)
+  window.electron = electronAPI
+  // @ts-ignore (define in dts)
+  window.api = api
 }
-init()

@@ -1,6 +1,6 @@
-import { App, Tray, Menu, BrowserWindow, ipcMain, MenuItem } from 'electron'
+import { App, Tray, Menu, BrowserWindow, ipcMain, MenuItem,T } from 'electron'
 import { join } from 'path'
-const useTray = (mainWindow: BrowserWindow, app: App) => {
+const useTray = (app: App, mainWindow: BrowserWindow) => {
     const trayMenu = [
         {
             label: '显示',
@@ -16,17 +16,16 @@ const useTray = (mainWindow: BrowserWindow, app: App) => {
         },
     ]
     const iconPath = join(__dirname, '../../build/icon.png')
-    const setTray = () => {
-        const appTray = new Tray(iconPath)
-        const contextMenu = Menu.buildFromTemplate(trayMenu)
-        mainWindow.hide()
-        appTray.setToolTip('tooltip')
-        appTray.setContextMenu(contextMenu)
-        appTray.on('click', () => {
-            mainWindow.show()
-            appTray.destroy()
-        })
-    }
-    ipcMain.on('hide-window', setTray)
+    const appTray = new Tray(iconPath)
+    const contextMenu = Menu.buildFromTemplate(trayMenu)
+    appTray.setToolTip('u-music')
+    ipcMain.on('tray-tooltip-update', (event, val) => {
+        appTray.setToolTip(val)
+    })
+    appTray.setContextMenu(contextMenu)
+    appTray.on('click', () => {
+        mainWindow.show()
+    })
+    return appTray
 }
 export default useTray

@@ -1,12 +1,18 @@
 import { RouteRecordRaw } from 'vue-router'
-import homeRoutes from './home.routes'
-const _routes = [homeRoutes]
+import indexRoutes from './index.routes'
+import aboutRoutes from './about.routes'
+
+const _routes = [
+  ...indexRoutes,
+  ...aboutRoutes,
+]
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    redirect: '/home'
-  },
   ..._routes,
+  {
+    path: '/not-found',
+    name: 'not-found',
+    component: () => import('@/views/not-found/not-found.vue')
+  },
   {
     path: '/:pathMatch(.*)*',
     redirect: '/not-found'

@@ -1,31 +1,23 @@
 <script setup lang="ts">
-import { NaiveProvider } from '@@/components'
+import DefaultLayout from './layouts/DefaultLayout.vue';
+import RouterEntry from '@/components/common/RouterEntry.vue';
 </script>
-
 <template>
-  <router-view v-slot="{ Component }">
-    <naive-provider>
-      <transition name="fade-transform" mode="out-in">
-        <component :is="Component"></component>
-      </transition>
-    </naive-provider>
-  </router-view>
+  <DefaultLayout>
+    <RouterEntry />
+  </DefaultLayout>
 </template>
 
-<style lang="less">
-@import './assets/css/styles.less';
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-  transition: all 0.3s ease-in-out;
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-.fade-transform-enter-from {
-  transform: scale(0.95);
-  opacity: 0;
-}
-
-.fade-transform-leave-to {
-  transform: scale(1.05);
-  opacity: 0;
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
 }
 </style>

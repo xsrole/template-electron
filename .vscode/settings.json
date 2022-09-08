@@ -1,4 +1,6 @@
-// {
+{
+    "i18n-ally.localesPaths": []
+} // {
 //   "[typescript]": {
 //     "editor.defaultFormatter": "esbenp.prettier-vscode"
 //   },

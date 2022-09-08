@@ -1,20 +1,25 @@
 import { shell, BrowserWindow } from 'electron'
 import { is } from '@electron-toolkit/utils'
 import path from 'path'
-const useWindow = (): BrowserWindow => {
+const useWindow = (isPackaged: boolean = true): BrowserWindow => {
     const mainWindow = new BrowserWindow({
-        width: 960,
-        height: 720,
+        width: 1020,
+        minWidth: 1020,
+        height: 670,
+        minHeight: 670,
         show: false,
         autoHideMenuBar: true,
         frame: false,
+
         ...(process.platform === 'linux'
             ? {
                 icon: path.join(__dirname, '../../build/icon.png')
             }
             : {}),
         webPreferences: {
-            preload: path.join(__dirname, '../preload/index.js')
+            preload: path.join(__dirname, '../preload/index.js'),
+            webSecurity: false,
+            devTools: !isPackaged
         }
     })
     mainWindow.on('ready-to-show', () => {

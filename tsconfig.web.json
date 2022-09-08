@@ -9,8 +9,11 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "types": [
+      "naive-ui/volar"
+    ],
     "paths": {
-      "@@/*": [
+      "@/*": [
         "src/renderer/src/*"
       ]
     }
