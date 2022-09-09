@@ -10,7 +10,6 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Icons from 'unplugin-icons/vite';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
-import visualizer from 'rollup-plugin-visualizer';
 import compressPlugin from 'vite-plugin-compression';
 const vendorLibs: { match: string[]; output: string }[] = [
   {
