@@ -1,7 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import indexRoutes from './index.routes';
 import aboutRoutes from './about.routes';
-
 const _routes = [...indexRoutes, ...aboutRoutes];
 const routes: RouteRecordRaw[] = [
   ..._routes,

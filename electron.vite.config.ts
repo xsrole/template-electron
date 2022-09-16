@@ -1,5 +1,4 @@
 import { defineConfig } from 'electron-vite';
-import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
@@ -15,18 +14,6 @@ const vendorLibs: { match: string[]; output: string }[] = [
   {
     match: ['naive-ui'],
     output: 'naiveui',
-  },
-  {
-    match: ['xgplayer'],
-    output: 'xgplayer',
-  },
-  {
-    match: ['@wangeditor'],
-    output: 'wangeditor',
-  },
-  {
-    match: ['echarts'],
-    output: 'echarts',
   },
 ];
 //分包
@@ -82,11 +69,16 @@ export default defineConfig({
             ],
           },
         ],
-        dirs: ['src/hooks', 'src/store', 'src/utils', 'src/api'],
+        dirs: ['src/hooks', 'src/stores', 'src/utils'],
         dts: 'src/typings/auto-import.d.ts',
+        eslintrc: {
+          enabled: true,
+          filepath: './.eslintrc-auto-import.json',
+          globalsPropValue: true,
+        },
       }),
       Components({
-        dirs: ['src/components'],
+        dirs: ['src/components', 'src/layouts'],
         extensions: ['vue'],
         deep: true,
         dts: 'src/typings/components.d.ts',
@@ -99,7 +91,7 @@ export default defineConfig({
         deleteOriginFile: false,
       }),
       vueI18n({
-        include: path.resolve(__dirname, './src/locales/**'),
+        include: path.resolve(__dirname, './src/renderer/src/**'),
       }),
     ],
     server: {
@@ -142,11 +134,6 @@ export default defineConfig({
       alias: {
         '~': resolve('src/renderer/src'),
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-      },
-    },
-    css: {
-      postcss: {
-        plugins: [autoprefixer()],
       },
     },
   },

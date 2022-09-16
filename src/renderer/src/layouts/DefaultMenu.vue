@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useAppStore } from '~/stores';
 const router = useRouter();
 const { darkMode, language } = storeToRefs(useAppStore());
 
 function changeLanguage() {
-  language.value = language.value === 'cn' ? 'en' : 'cn';
+  language.value = language.value === 'zh_cn' ? 'en_us' : 'zh_cn';
 }
 </script>
 <template>

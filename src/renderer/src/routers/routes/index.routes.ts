@@ -1,12 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
-const indexRoute = () => import('~/views/index/index.vue');
+import Index from '~/views/index/index.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: indexRoute.name,
-    component: indexRoute,
+    name: Index.name,
+    component: Index,
     meta: {
-      title: '',
+      title: '首页',
     },
   },
 ];

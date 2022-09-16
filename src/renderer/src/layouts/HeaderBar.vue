@@ -10,7 +10,7 @@ const handleQuit = () => {
 };
 </script>
 <template>
-  <header wfull h6 fixed flex>
+  <header wfull h6 fixed flex left-0 top-0 right-0>
     <div mlauto h6 flex items-center>
       <div class="btn" @click="handleMini">
         <i i-ri-subtract-fill></i>
