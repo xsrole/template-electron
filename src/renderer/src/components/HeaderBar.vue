@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const handleMini = () => {
+  console.log(window.electron);
   window.electron.ipcRenderer.send('window-screen-min');
 };
 const handleToggleFull = () => {
