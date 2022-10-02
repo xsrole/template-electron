@@ -32,7 +32,7 @@ function changeLanguage() {
     </n-tooltip>
     <i i-ri-user-heart-line class="btn" @click="router.push('/about')"></i>
     <a
-      href="https://github.com/antrioe/template-vue3"
+      href="https://github.com/antrioe/template-electron"
       i-ri-github-fill
       class="btn"
       target="_blank"
