@@ -19,19 +19,22 @@ type Props = {
 };
 const props = defineProps<Props>();
 const theme = ref<GlobalTheme | undefined>(undefined);
-watch(
-  () => props.dark,
-  (dark) => {
-    if (dark) {
-      theme.value = darkTheme;
-      document.body.classList.add('dark');
-      return;
-    }
-    theme.value = undefined;
-    document.body.classList.remove('dark');
-  },
-  { immediate: true },
-);
+onMounted(() => {
+  watch(
+    () => props.dark,
+    (dark) => {
+      if (dark) {
+        theme.value = darkTheme;
+        document.body.classList.add('dark');
+        return;
+      }
+      theme.value = undefined;
+      document.body.classList.remove('dark');
+    },
+    { immediate: true },
+  );
+});
+
 // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
 function registerNaiveTools() {
   window.$loadingBar = useLoadingBar();
@@ -41,7 +44,9 @@ function registerNaiveTools() {
 }
 const NaiveProviderContent = defineComponent({
   setup() {
-    registerNaiveTools();
+    onMounted(() => {
+      registerNaiveTools();
+    });
   },
   render() {
     return h('div');
