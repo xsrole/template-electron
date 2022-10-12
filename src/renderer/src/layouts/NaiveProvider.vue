@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue';
-import {
-  NLoadingBarProvider,
-  NDialogProvider,
-  NNotificationProvider,
-  NMessageProvider,
-  darkTheme,
-  GlobalTheme,
-} from 'naive-ui';
+import type { NDateLocale, GlobalTheme, GlobalThemeOverrides } from 'naive-ui';
 import {
   useLoadingBar,
   useDialog,
   useMessage,
   useNotification,
+  NLoadingBarProvider,
+  NDialogProvider,
+  NNotificationProvider,
+  NMessageProvider,
+  darkTheme,
+  zhCN,
 } from 'naive-ui';
 type Props = {
   dark: boolean;
+  themeOverrides?: GlobalThemeOverrides;
+  locale?: typeof zhCN;
+  dateLocale?: NDateLocale;
 };
 const props = defineProps<Props>();
 const theme = ref<GlobalTheme | undefined>(undefined);
@@ -54,7 +56,13 @@ const NaiveProviderContent = defineComponent({
 });
 </script>
 <template>
-  <n-config-provider abstract :theme="theme">
+  <n-config-provider
+    abstract
+    :theme="theme"
+    :theme-overrides="props.themeOverrides"
+    :locale="props.locale"
+    :date-locale="props.dateLocale"
+  >
     <n-loading-bar-provider>
       <n-dialog-provider>
         <n-notification-provider>
