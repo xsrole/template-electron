@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     DefaultMenu: typeof import('./../layouts/DefaultMenu.vue')['default']
     HeaderBar: typeof import('./../layouts/HeaderBar.vue')['default']
     NaiveProvider: typeof import('./../layouts/NaiveProvider.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NPopover: typeof import('naive-ui')['NPopover']
